@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Header.css';
+import Input from '../input';
 
 const Header = ({ cartCount }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,7 +11,16 @@ const Header = ({ cartCount }) => {
                 <div className="logo">
                     <h1>ShopEase</h1>
                 </div>
-
+                <Input
+                    type={'email'}
+                    placeholder={'please enter email'}
+                    handleOnChange={(ev) => console.log('email', ev.target.value)}
+                />
+                <Input
+                    type={'password'}
+                    placeholder={'please enter password'}
+                    handleOnChange={(ev) => console.log('password', ev.target.value)}
+                />
                 <button
                     className="mobile-menu-btn"
                     onClick={() => setIsMenuOpen(!isMenuOpen)}

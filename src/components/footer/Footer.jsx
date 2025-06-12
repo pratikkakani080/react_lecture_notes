@@ -1,3 +1,4 @@
+import Button from '../button';
 import './Footer.css';
 
 const Footer = () => {
@@ -31,6 +32,9 @@ const Footer = () => {
 
             <div className="footer-bottom">
                 <p>&copy; 2024 ShopEase. All rights reserved.</p>
+                <Button
+                    buttonBgColor={'red'}
+                />
             </div>
         </footer>
     );
