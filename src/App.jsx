@@ -5,6 +5,7 @@ import Footer from './components/footer/Footer'
 import Cart from './components/cart/Cart'
 import ProductList from './components/productList/ProductList'
 import { products } from './utils/static/products'
+import { createBrowserRouter, Route, RouterProvider, Routes } from 'react-router'
 
 function App() {
   const [cart, setCart] = useState([])
@@ -42,11 +43,33 @@ function App() {
     )
   }
 
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: 'home'
+    },
+    {
+      path: '/products',
+      element: <ProductList products={products} addToCart={addToCart} />
+    },
+    
+    {
+      path: '/about',
+      element: 'about'
+    },
+    
+  ])
+
   return (
     <div className="app">
       <Header cartCount={cart.length} />
+      {/* <Routes>
+        <Route path='/' element={<div>test</div>} />
+        <Route path='/about' element={<div>about route</div>} />
+      </Routes> */}
+      <RouterProvider router={router} />
 
-      <main>
+      {/* <main>
         <section className="hero">
           <h2>Welcome to ShopEase</h2>
           <p>Discover amazing products at great prices</p>
@@ -59,7 +82,7 @@ function App() {
         cart={cart}
         removeFromCart={removeFromCart}
         updateQuantity={updateQuantity}
-      />
+      /> */}
 
       <Footer />
     </div>
