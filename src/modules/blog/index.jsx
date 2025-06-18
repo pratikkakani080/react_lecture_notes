@@ -10,7 +10,7 @@ function Blog() {
             {
                 blogs.map(blog => {
                     return (
-                        <p onClick={() => navigate('/blog/blog-details?slug=' + blog.slug + '&color=' + blog.color)}>{blog.title}</p>
+                        <p onClick={() => navigate('/blog/blog-details/' + blog.slug + '/' + blog.color)}>{blog.title}</p>
                     )
                 })
             }

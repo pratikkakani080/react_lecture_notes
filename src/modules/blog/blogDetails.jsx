@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSearchParams } from 'react-router'
+import { useParams, useSearchParams } from 'react-router'
 import { blogs } from '../../utils/static/blog';
 
 function BlogDetails() {
@@ -8,14 +8,16 @@ function BlogDetails() {
     const size = searchParams.get('size')
     const color = searchParams.get('color')
     const test = searchParams.get('test')
-    console.log(size, color, test);
+    
+    const params = useParams();
+    console.log(params);
 
     return (
         <div>
             <p>
                 this is blog details
             </p>
-            {blogs.find(blog => blog.slug === slug)?.title}
+            {blogs.find(blog => blog.slug === params.slug)?.title}
         </div>
     )
 }

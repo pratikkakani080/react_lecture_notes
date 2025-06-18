@@ -18,7 +18,7 @@ function App() {
         { path: '/about', element: <About /> },
         { path: '/contact', element: <Contact /> },
         { path: '/blog', element: <Blog /> },
-        { path: '/blog/blog-details', element: <BlogDetails /> },
+        { path: '/blog/blog-details/:slug/:color', element: <BlogDetails /> },
         { path: '/privacy-policy', element: <PrivacyPolicy /> },
       ]
     },
