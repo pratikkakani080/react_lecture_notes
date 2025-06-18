@@ -17,15 +17,9 @@ function App() {
       children: [
         { path: '/about', element: <About /> },
         { path: '/contact', element: <Contact /> },
-        {
-          path: '/blog',
-          element: <Blog />,
-          children: [
-            { path: 'blog-details', element: <BlogDetails /> }
-          ]
-        },
+        { path: '/blog', element: <Blog /> },
+        { path: '/blog/blog-details', element: <BlogDetails /> },
         { path: '/privacy-policy', element: <PrivacyPolicy /> },
-
       ]
     },
     { path: '/login', element: <div>login</div> }
