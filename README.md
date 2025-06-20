@@ -17,6 +17,10 @@ props
 routing
 - useParams
 - useSearchParams
+lifecycle
+- mounting
+- updating
+- unmounting
 hooks
 - useState
 - useEffect
