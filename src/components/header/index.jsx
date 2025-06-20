@@ -9,7 +9,7 @@ function Header() {
                 Logo
             </div>
             <div>
-                <a href='/'>Home</a>
+                <a href='/dashboard'>Home</a>
                 <a href='/about'>About</a>
                 <a href='/contact'>Contact</a>
                 <a href='/blog'>Blog</a>
