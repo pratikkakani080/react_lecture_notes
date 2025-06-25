@@ -8,6 +8,7 @@ import Header from './components/header'
 import Blog from './modules/blog'
 import BlogDetails from './modules/blog/blogDetails'
 import Layout from './components/layout'
+import Signup from './modules/register'
 
 function App() {
   const routeList = [
@@ -23,7 +24,8 @@ function App() {
         { path: '/privacy-policy', element: <PrivacyPolicy /> },
       ]
     },
-    { path: '/login', element: <div>login</div> }
+    { path: '/login', element: <div>login</div> },
+    { path: '/register', element: <Signup /> }
   ]
   const router = createBrowserRouter(routeList)
 
