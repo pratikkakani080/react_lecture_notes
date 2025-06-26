@@ -1,9 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { localHandler } from '../../utils/storage'
+import { useNavigate, useSearchParams } from 'react-router'
+import { v4 as uuidv4 } from 'uuid';
 
 function Signup() {
+    const [params] = useSearchParams()
+    const editedUserId = params.get('id')
     const [user, setUser] = useState({})
     const [errors, setErrors] = useState({})
+    const navigate = useNavigate()
+    const storedUsers = JSON.parse(localHandler('GET', 'users')) || []
+
+    useEffect(() => {
+        if (editedUserId) {
+            // console.log(editedUserId);
+            // console.log(storedUsers.find(el => el.id === editedUserId))
+            setUser(storedUsers.find(el => el.id === editedUserId))
+        }
+    }, [editedUserId])
 
     const changeHandler = (event) => {
         const { name, value } = event.target
@@ -44,26 +58,28 @@ function Signup() {
 
     const clickHandler = () => {
         if (validate()) {
-            localHandler('SET', 'users', JSON.stringify([user]))
-            setUser({ uname: '', email: '', password: '', confirmPassword: '' })
+            storedUsers.push({ ...user, id: uuidv4() })
+            localHandler('SET', 'users', JSON.stringify(storedUsers))
+            // setUser({ uname: '', email: '', password: '', confirmPassword: '' })
+            navigate('/users')
         }
     }
 
     return (
         <div>
             <label htmlFor="uname"><strong>Username</strong><span style={{ color: 'red', fontSize: '10px' }}>{errors.uname}</span></label>
-            <input type="text" placeholder="Enter Username" name="uname" value={user?.uname} required onChange={changeHandler} />
+            <input type="text" placeholder="Enter Username" name="uname" value={user?.uname} required onChange={changeHandler} autoComplete />
             <br />
             <label htmlFor="email"><strong>Email</strong><span style={{ color: 'red', fontSize: '10px' }}>{errors.email}</span></label>
-            <input type="email" placeholder="Enter Email" name="email" value={user?.email} required onChange={changeHandler} />
+            <input type="email" placeholder="Enter Email" name="email" value={user?.email} required onChange={changeHandler} autoComplete />
             <br />
             <label htmlFor="password"><strong>Password</strong><span style={{ color: 'red', fontSize: '10px' }}>{errors.password}</span></label>
-            <input type="password" placeholder="Enter Password" name="password" value={user?.password} required onChange={changeHandler} />
+            <input type="password" placeholder="Enter Password" name="password" value={user?.password} required onChange={changeHandler} autoComplete />
             <br />
             <label htmlFor="confirmPassword"><strong>Confirm Password</strong><span style={{ color: 'red', fontSize: '10px' }}>{errors.confirmPassword}</span></label>
-            <input type="password" placeholder="Confirm password" name="confirmPassword" value={user?.confirmPassword} required onChange={changeHandler} />
+            <input type="password" placeholder="Confirm password" name="confirmPassword" value={user?.confirmPassword} required onChange={changeHandler} autoComplete />
             <br />
-            <button onClick={clickHandler}>Register</button>
+            <button onClick={clickHandler}>{editedUserId ? 'Edit User' : 'Register'}</button>
         </div>
     )
 }

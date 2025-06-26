@@ -9,6 +9,7 @@ import Blog from './modules/blog'
 import BlogDetails from './modules/blog/blogDetails'
 import Layout from './components/layout'
 import Signup from './modules/register'
+import Users from './modules/users'
 
 function App() {
   const routeList = [
@@ -22,6 +23,7 @@ function App() {
         { path: '/blog', element: <Blog /> },
         { path: '/blog/blog-details/:slug/:color', element: <BlogDetails /> },
         { path: '/privacy-policy', element: <PrivacyPolicy /> },
+        { path: '/users', element: <Users /> },
       ]
     },
     { path: '/login', element: <div>login</div> },
