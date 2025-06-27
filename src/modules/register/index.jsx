@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { localHandler } from '../../utils/storage'
 import { useNavigate, useSearchParams } from 'react-router'
 import { v4 as uuidv4 } from 'uuid';
+import toast from 'react-hot-toast';
 
 function Signup() {
     const [params] = useSearchParams()
@@ -58,8 +59,17 @@ function Signup() {
 
     const clickHandler = () => {
         if (validate()) {
-            storedUsers.push({ ...user, id: uuidv4() })
-            localHandler('SET', 'users', JSON.stringify(storedUsers))
+            let data = storedUsers || []
+            if (editedUserId) {
+                // edit flow
+                data = data.map(el => el.id === user.id ? user : el)
+                toast('User updated successfully!')
+            } else {
+                // add user flow
+                data.push({ ...user, id: uuidv4() })
+                toast('User created successfully!')
+            }
+            localHandler('SET', 'users', JSON.stringify(data))
             // setUser({ uname: '', email: '', password: '', confirmPassword: '' })
             navigate('/users')
         }
