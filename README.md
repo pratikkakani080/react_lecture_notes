@@ -24,7 +24,7 @@ lifecycle
 hooks
 - useState
 - useEffect
-- useContext
+- useContext || context API
 - useRef
 - useMemo
 - useCallback
@@ -35,3 +35,9 @@ Redux
 - useSelector
 Graphql
 Test cases
+
+## pull data from children to parent
+- state uplifting
+- callback function
+
+- prop drilling

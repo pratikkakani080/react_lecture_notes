@@ -11,6 +11,7 @@ import Layout from './components/layout'
 import Signup from './modules/register'
 import Users from './modules/users'
 import { Toaster } from 'react-hot-toast'
+import Global from './modules/global'
 
 function App() {
   const routeList = [
@@ -28,7 +29,8 @@ function App() {
       ]
     },
     { path: '/login', element: <div>login</div> },
-    { path: '/register', element: <Signup /> }
+    { path: '/register', element: <Signup /> },
+    { path: '/global', element: <Global /> },
   ]
   const router = createBrowserRouter(routeList)
 
