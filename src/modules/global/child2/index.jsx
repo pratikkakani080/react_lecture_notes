@@ -1,11 +1,14 @@
 
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
+import MyContext from '../../../contexts/myContext';
 
 function Child2({ parentState }) {
-    useEffect(() => {
-        console.log('state from child 1 ==>', parentState);
+const { globalData } = useContext(MyContext)
 
-    }, [parentState])
+    useEffect(() => {
+        console.log('state from child 1 ==>', globalData);
+
+    }, [globalData])
     return (
         <div style={{ backgroundColor: 'green' }}>
             child 2

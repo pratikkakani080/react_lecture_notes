@@ -1,8 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Child1 from './child1'
 import Child2 from './child2'
+import MyContext from '../../contexts/myContext'
+import OurContext from '../../contexts/ourContext'
 
 function Global() {
+    const globalData = useContext(MyContext)
+    const globalData2 = useContext(OurContext)
+    console.log('globalData ===>', globalData, globalData2);
+
     const [parentState, setParentState] = useState('')
     console.log('console from global ==>', parentState);
     const callBkFn = (data) => {

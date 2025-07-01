@@ -12,6 +12,9 @@ import Signup from './modules/register'
 import Users from './modules/users'
 import { Toaster } from 'react-hot-toast'
 import Global from './modules/global'
+import OurContext from './contexts/ourContext'
+import MyContextProvider from './contexts/providers/myContextProvider'
+import OurContextProvider from './contexts/providers/ourContextProvider'
 
 function App() {
   const routeList = [
@@ -39,8 +42,12 @@ function App() {
       {/* <Routes>
         {routeList.map(el => <Route path={el.path} element={el.element} />)}
       </Routes> */}
-      <Toaster />
-      <RouterProvider router={router} />
+      <OurContextProvider>
+        <MyContextProvider>
+          <Toaster />
+          <RouterProvider router={router} />
+        </MyContextProvider>
+      </OurContextProvider>
     </div>
   )
 }
