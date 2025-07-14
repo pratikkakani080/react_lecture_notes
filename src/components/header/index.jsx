@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './header.css'
 import { Link } from 'react-router'
+import MyContext from '../../contexts/myContext'
 
 function Header() {
+    const { likedPosts } = useContext(MyContext)
+
     return (
         <div>
             <div>
                 Logo
+            </div>
+            <div>
+                Liked Posts ({likedPosts.length})
             </div>
             <div>
                 <a href='/dashboard'>Home</a>
