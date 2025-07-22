@@ -14,6 +14,7 @@ import Global from './modules/global'
 import OurContext from './contexts/ourContext'
 import MyContextProvider from './contexts/providers/myContextProvider'
 import OurContextProvider from './contexts/providers/ourContextProvider'
+import SearchFunctionality from './modules/searchFunc'
 
 function App() {
   const routeList = [
@@ -23,6 +24,7 @@ function App() {
       children: [
         { path: '/dashboard', element: <Home /> },
         { path: '/about', element: <About /> },
+        { path: '/search-functionality', element: <SearchFunctionality /> },
         { path: '/contact', element: <Contact /> },
         { path: '/blog', element: <Blog /> },
         { path: '/blog/blog-details/:slug/:color', element: <BlogDetails /> },
