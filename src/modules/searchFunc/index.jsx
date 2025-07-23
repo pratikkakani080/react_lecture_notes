@@ -14,6 +14,7 @@ function SearchFunctionality() {
     const [products, setProducts] = useState([])
     const [filteredProducts, setFilteredProducts] = useState([])
     const [searchString, setSearchString] = useState('')
+    console.log(products);
 
 
     useEffect(() => {
@@ -26,12 +27,18 @@ function SearchFunctionality() {
         const res = await fetch('https://dummyjson.com/products')
         const data = await res.json()
         setProducts(data.products) // setting out initial data to state
+        setFilteredProducts(data.products)
     }
 
     const clickHandler = () => {
         // filter logic on submit
-        console.log(searchString, '======', products, '=====', products.filter((el) => el.title.toLowerCase().includes(searchString)));
-        setFilteredProducts(products.filter((el) => el.title.toLowerCase().includes(searchString)))
+        setFilteredProducts(products.filter((el) => el.title.toLowerCase().includes(searchString.toLowerCase())))
+    }
+
+    const clickResetHandler = () => {
+        // clear out filter and search query
+        setSearchString('')
+        setFilteredProducts(products)
     }
 
     return (
@@ -40,12 +47,14 @@ function SearchFunctionality() {
                 <input
                     type='text'
                     placeholder='please search for title...'
+                    value={searchString}
                     onChange={(event) => setSearchString(event.target.value)}
                 />
                 <button onClick={() => clickHandler()}>Filter</button>
+                <button onClick={() => clickResetHandler()}>Reset</button>
             </div>
             <div className='product-listing-wrapper'>
-                {products.map(product => {
+                {filteredProducts.map(product => {
                     return (
                         <div class="product-card">
                             <img src={product.thumbnail} alt="Product Image" />
