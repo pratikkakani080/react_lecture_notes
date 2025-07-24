@@ -13,9 +13,8 @@ import './searchFunc.css';
 function SearchFunctionality() {
     const [products, setProducts] = useState([])
     const [filteredProducts, setFilteredProducts] = useState([])
+    const [categories, setCategories] = useState()
     const [searchString, setSearchString] = useState('')
-    console.log(products);
-
 
     useEffect(() => {
         // to fetch products on load
@@ -24,9 +23,13 @@ function SearchFunctionality() {
 
     const fetchProducts = async () => {
         // product API call
-        const res = await fetch('https://dummyjson.com/products')
+        const res = await fetch('https://dummyjson.com/products?limit=194')
         const data = await res.json()
         setProducts(data.products) // setting out initial data to state
+
+        // new set method is used to generate new data set and de-duplicate the original values
+        setCategories([...(new Set(data.products.map(product => product.tags.shift())))]) // filtering out categories for filer
+        
         setFilteredProducts(data.products)
     }
 
